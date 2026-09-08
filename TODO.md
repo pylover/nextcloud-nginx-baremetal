@@ -26,3 +26,7 @@ cbc566425d969370e2df4d9be6e279cd  nextcloud-34.0.3.metadata
 - extract the downloaded archive in `${usr}/.var/www`.
 - create the directory if not exists
 - respect to the `usr` env variable
+
+## nci4 - create user
+- update the install.sh line 66 and create the system user `${usr}` if not 
+  exists.

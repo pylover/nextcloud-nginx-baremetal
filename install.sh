@@ -63,6 +63,8 @@ fi
 
 log "MD5 checksum verified: ${archive}"
 
+#TODO: create user
+
 log "extracting the archive into ${extractdir}"
 mkdir -p "${extractdir}"
 tar -xjf "${archive}" -C "${extractdir}"
