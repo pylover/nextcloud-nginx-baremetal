@@ -1,5 +1,5 @@
 VER = 0.1.0
-TARGETHOST = office
+TARGETHOST = root@office
 DISTNAME = nextcloud-installer-v$(VER)
 DISTFILE = $(DISTNAME).tar.gz
 INSTALL = \
@@ -20,5 +20,7 @@ clean::
 
 deploy: dist/$(DISTFILE)
 	scp dist/$(DISTFILE) $(TARGETHOST):/tmp
-	ssh $(TARGETHOST) "tar -xvf /tmp/$(DISTFILE)"
-	ssh $(TARGETHOST) "cd /tmp/$(DISTNAME); ./install.sh"
+	ssh $(TARGETHOST) "tar -xvC /tmp -f /tmp/$(DISTFILE)"
+	ssh $(TARGETHOST) \
+		"cp /tmp/nextcloud-installer/vars.example /tmp/nextcloud-installer/.vars"
+	ssh $(TARGETHOST) "cd /tmp/nextcloud-installer; ./install.sh"

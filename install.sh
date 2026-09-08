@@ -28,9 +28,16 @@ archivefilename="nextcloud-${ncver}.tar.bz2"
 archive="${tmpdir}/${archivefilename}"
 checksumurl="${ncdurl}/${archivefilename}.md5"
 checksumfile="${tmpdir}/${archivefilename}.md5"
-extractdir="${usr}/.var/www"
+extractdir="/home/${usr}/.var/www"
 
 mkdir -p "${tmpdir}"
+
+log "installing dependencies"
+apt-get install -y \
+  nginx \
+  wget \
+  bzip2
+
 
 log "check existing archive"
 if [[ -f "${archive}" ]]; then
@@ -63,8 +70,14 @@ fi
 
 log "MD5 checksum verified: ${archive}"
 
-#TODO: create user
+log "checking system user ${usr}"
+if id -u "${usr}" >/dev/null 2>&1; then
+  log "system user already exists: ${usr}"
+else
+  log "creating system user: ${usr}"
+  useradd --system --create-home "${usr}"
+fi
 
-log "extracting the archive into ${extractdir}"
+log "extracting the ${archive} into ${extractdir}"
 mkdir -p "${extractdir}"
 tar -xjf "${archive}" -C "${extractdir}"
