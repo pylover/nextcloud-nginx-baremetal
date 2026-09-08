@@ -21,3 +21,8 @@ cbc566425d969370e2df4d9be6e279cd  nextcloud-34.0.3.metadata
 
 ## nci2 - re-download if verification fails
 - re-download the archive if md5sum verfication failes.
+
+## nci3 - extract the archive
+- extract the downloaded archive in `${usr}/.var/www`.
+- create the directory if not exists
+- respect to the `usr` env variable

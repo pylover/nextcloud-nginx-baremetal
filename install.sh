@@ -28,6 +28,7 @@ archivefilename="nextcloud-${ncver}.tar.bz2"
 archive="${tmpdir}/${archivefilename}"
 checksumurl="${ncdurl}/${archivefilename}.md5"
 checksumfile="${tmpdir}/${archivefilename}.md5"
+extractdir="${usr}/.var/www"
 
 mkdir -p "${tmpdir}"
 
@@ -61,3 +62,7 @@ if ! verify_archive; then
 fi
 
 log "MD5 checksum verified: ${archive}"
+
+log "extracting the archive into ${extractdir}"
+mkdir -p "${extractdir}"
+tar -xjf "${archive}" -C "${extractdir}"

@@ -1,4 +1,4 @@
 ncver=34.0.3
 ncdurl=https://download.nextcloud.com/server/releases
-
 tmpdir=/tmp/nci
+usr=nc
